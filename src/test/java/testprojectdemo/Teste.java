@@ -19,9 +19,9 @@ public class Teste {
 		WebDriver driver = new ChromeDriver(options);
 
 		// Open Google
-		driver.get("http://www.globo.com");
+		driver.get("https://seubarriga.wcaquino.me/login");
 
-		driver.findElement(By.xpath("//span[contains(text(), 'g1')]")).click();
+		//driver.findElement(By.xpath("//span[contains(text(), 'g1')]")).click();
 
 		// Close browser
 		driver.quit();
