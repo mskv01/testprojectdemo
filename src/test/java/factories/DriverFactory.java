@@ -1,29 +1,41 @@
-package testprojectdemo;
+package factories;
 
-import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Teste {
+public class DriverFactory {
+	private WebDriver driver;
 
-	@Test
-	public void test1() {
+	public DriverFactory () {
+		
+	}
+	
+	
+	public DriverFactory(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public void navigate(String url) {
+		driver.get(url);
+	}
+
+	public void createDriver() {
 		// Initialize browser
 		WebDriverManager.chromedriver().driverVersion(Integer.toString(87)).setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--start-maximized");
-		WebDriver driver = new ChromeDriver(options);
+		driver = new ChromeDriver(options);
+	}
 
-		// Open Google
-		driver.get("https://seubarriga.wcaquino.me/login");
+	public WebDriver driver() {
+		return driver;
+	}
 
-		//driver.findElement(By.xpath("//span[contains(text(), 'g1')]")).click();
-
-		// Close browser
+	public void closeDriver() {
 		driver.quit();
 	}
+
 }

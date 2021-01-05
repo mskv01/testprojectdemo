@@ -1,4 +1,4 @@
-package testprojectdemo;
+package manterlogin;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -32,13 +32,20 @@ public class Test_Validar_Campos_Obrigatorios {
 
 		driver.findElement(By.xpath("//button[contains(text(),'Entrar')]")).click();
 
-		if (!driver.findElement(By.xpath("//div[contains(text(),'Email é um campo obrigatório')]")).isDisplayed()) {
+		try {
+			driver.findElement(By.xpath("//div[contains(text(),'Email é um campo obrigatório')]")).isDisplayed();
+
+		} catch (Exception e) {
 			Assert.fail("Não foi apresentada mensagem de email obrigatório");
 		}
 
-		if (!driver.findElement(By.xpath("//div[contains(text(),'Senha é um campo obrigatório')]")).isDisplayed()) {
+		try {
+			driver.findElement(By.xpath("//div[contains(text(),'Senha é um campo obrigatório')]")).isDisplayed();
+
+		} catch (Exception e) {
 			Assert.fail("Não foi apresentada mensagem de senha obrigatória");
 		}
+		
 
 	}
 
@@ -50,10 +57,14 @@ public class Test_Validar_Campos_Obrigatorios {
 		driver.findElement(By.id("senha")).sendKeys("senha123456");
 
 		driver.findElement(By.xpath("//button[contains(text(),'Entrar')]")).click();
+		
+		try {
+			driver.findElement(By.xpath("//div[contains(text(),'Email é um campo obrigatório')]")).isDisplayed();
 
-		if (!driver.findElement(By.xpath("//div[contains(text(),'Email é um campo obrigatório')]")).isDisplayed()) {
+		} catch (Exception e) {
 			Assert.fail("Não foi apresentada mensagem de email obrigatório");
 		}
+		
 
 	}
 
@@ -66,9 +77,13 @@ public class Test_Validar_Campos_Obrigatorios {
 
 		driver.findElement(By.xpath("//button[contains(text(),'Entrar')]")).click();
 
-		if (!driver.findElement(By.xpath("//div[contains(text(),'Senha é um campo obrigatório')]")).isDisplayed()) {
+		try {
+			driver.findElement(By.xpath("//div[contains(text(),'Senha é um campo obrigatório')]")).isDisplayed();
+
+		} catch (Exception e) {
 			Assert.fail("Não foi apresentada mensagem de senha obrigatória");
 		}
+
 	}
 
 	@After
