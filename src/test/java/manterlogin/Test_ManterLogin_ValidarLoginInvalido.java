@@ -6,7 +6,7 @@ import org.junit.Test;
 import factories.DriverFactory;
 import pages.PageLogin;
 
-public class Test_Validar_Login_Invalido {
+public class Test_ManterLogin_ValidarLoginInvalido {
 
 	public DriverFactory driver;
 	public PageLogin login;

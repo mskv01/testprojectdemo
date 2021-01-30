@@ -18,10 +18,12 @@ public class PageLogin extends ActionFactory {
 		return this;
 	}
 
-	public void realizarLogin(String email, String senha) {
+	public PageHome realizarLogin(String email, String senha) {
 		sendKeys(By.id("email"), email, 30);
 		sendKeys(By.id("senha"), senha, 30);
 		click(By.xpath("//button[contains(text(),'Entrar')]"), 30);
+		click(By.xpath("//a[contains(text(),'reset')]"), 30);
+		return new PageHome(driver());
 	}
 
 	public void verificarUsuarioAutenticadoComSucesso() {
@@ -44,4 +46,35 @@ public class PageLogin extends ActionFactory {
 		return new PageCadastro(driver());
 	}
 	
+	public void validarCamposObrigatorios() {
+		click(By.xpath("//button[contains(text(),'Entrar')]"), 30);
+		existsElement(
+			By.xpath("//div[contains(text(),'Email é um " + Message.CampoObrigorio + "')]"),
+			"Não foi apresentada mensagem de email obrigatório",
+			30
+		);
+		existsElement(
+			By.xpath("//div[contains(text(),'Senha é um " + Message.CampoObrigorio + "')]"),
+			"Não foi apresentada mensagem de senha obrigatória",
+			30
+		);
+	}
+	public void validarEmailObrigatorio() {
+		sendKeys(By.id("senha"),"senha123456", 30);
+		click(By.xpath("//button[contains(text(),'Entrar')]"), 30);
+		existsElement(
+			By.xpath("//div[contains(text(),'Email é um " + Message.CampoObrigorio + "')]"),
+			"Não foi apresentada mensagem de email obrigatório",
+			30
+		);
+	}
+	public void validarSenhaObrigatoria() {
+		sendKeys(By.id("email"),"teste@naocadastrado.com", 30);
+		click(By.xpath("//button[contains(text(),'Entrar')]"), 30);
+		existsElement(
+			By.xpath("//div[contains(text(),'Senha é um " + Message.CampoObrigorio + "')]"),
+			"Não foi apresentada mensagem de senha obrigatória",
+			30
+		);
+	}
 }
